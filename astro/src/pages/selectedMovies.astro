@@ -1,37 +1,54 @@
 ---
-import { ref, get } from "firebase/database";
-import { db } from '../firebase';
-
-const getData = async () => {
-  const dbRef = ref(db, '/');
-  let data = {};
-
-  try {
-    const snapshot = await get(dbRef);
-    if (snapshot.exists()) {
-      data = snapshot.val();
-    } else {
-      console.log("No data available");
-    }
-  } catch (error) {
-    console.error("Error fetching data:", error);
-  }
-
-  return data;
-};
-
-const data = await getData();
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/navbar.astro';
+import Selected from '../components/selectedMovies';
+import '../../style.css';
 ---
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Firebase Data</title>
-</head>
-<body>
-  <h1>Firebase Data</h1>
-  <pre>{JSON.stringify(data, null, 2)}</pre>
-</body>
-</html>
+<Layout title="Selected Movies">
+  <Navbar />
+
+  <main>
+    <section>
+      <h1>Welcome to Selected Movies</h1>
+      <p>Here you'll find a collection of movies selected by our users. Enjoy browsing comments and reviews!</p>
+    </section>
+
+    <section>
+      <Selected client:load />
+    </section>
+    
+  </main>
+</Layout>
+
+<style>
+  main {
+    margin: auto;
+    padding: 1rem;
+    width: 800px;
+    max-width: calc(100% - 2rem);
+    color: white;
+    font-size: 20px;
+    line-height: 1.6;
+  }
+  section {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  p {
+    font-size: 1.2rem;
+  }
+  img {
+    display: block;
+    margin: 0.5rem auto;
+  }
+</style>

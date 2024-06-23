@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { auth } from '../firebase';
 import { onAuthStateChanged } from "firebase/auth";
-import { addMovie, addComment } from './movieService';
+import { addMovie, addComment} from './movieService';
 
 const MovieDetails = ({ movie, onClose }) => {
   const [isAdded, setIsAdded] = useState(false);
@@ -16,6 +16,7 @@ const MovieDetails = ({ movie, onClose }) => {
 
     return () => unsubscribe();
   }, []);
+
 
   const handleAdd = async () => {
     if (user) {
@@ -52,18 +53,20 @@ const MovieDetails = ({ movie, onClose }) => {
       <p><strong>Actors:</strong> {movie.Actors}</p>
       <p><strong>Language:</strong> {movie.Language}</p>
       <p><strong>IMDB Rating:</strong> {movie.imdbRating}</p>
-      
-      <div>
-        <h3>Add a Review</h3>
-        <textarea value={comment} onChange={(e) => setComment(e.target.value)} placeholder="Write your comment here"></textarea>
+
+      {!isAdded && (
         <div>
-          <label>Rating: </label>
-          <input type="number" value={rating} onChange={(e) => setRating(Number(e.target.value))} min="1" max="10" />
+          <h3>Add a Review</h3>
+          <textarea value={comment} onChange={(e) => setComment(e.target.value)} placeholder="Write your comment here"></textarea>
+          <div>
+            <label>Rating: </label>
+            <input type="number" value={rating} onChange={(e) => setRating(Number(e.target.value))} min="1" max="10" />
+          </div>
+          <button onClick={handleAdd} disabled={isAdded}>
+            {isAdded ? "Added" : "Add to Selected Movies"}
+          </button>
         </div>
-        <button onClick={handleAdd} disabled={isAdded}>
-          {isAdded ? "Added to Favorites and Review" : "Add to Favorites and Review"}
-        </button>
-      </div>
+      )}
     </div>
   );
 };

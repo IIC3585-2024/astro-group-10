@@ -57,4 +57,19 @@ const getMovieDetails = async (movieTitle) => {
   }
 };
 
-export { addMovie, addComment, getMovieDetails };
+const getAllMovies = async () => {
+  const dbRef = ref(db);
+  try {
+    const moviesSnapshot = await get(child(dbRef, 'movies'));
+    if (moviesSnapshot.exists()) {
+      return moviesSnapshot.val();
+    } else {
+      return {};
+    }
+  } catch (e) {
+    console.error("Error getting all movies: ", e);
+    return {};
+  }
+};
+
+export { addMovie, addComment, getMovieDetails, getAllMovies };
