@@ -1,0 +1,25 @@
+---
+import AuthButton from './login';
+
+---
+
+<nav class="navbar">
+    <a href="/">Home</a>
+    <a href="/selectedMovies">Selected Movies</a>
+    <div class="auth-button">
+      <AuthButton client:load />
+    </div>
+  </nav>
+  
+  <style>
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+    }
+  
+    .auth-button {
+      margin-left: auto;
+    }
+  </style>
