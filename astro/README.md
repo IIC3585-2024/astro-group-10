@@ -1,5 +1,7 @@
 # Grupo 10 Astro
 
+Página en [Link](https://astro-59f6f.web.app/)
+
 Para probar localmente entrar a la carpeta "astro". 
 Correr `npm i`
 Correr `npm run dev`
@@ -9,8 +11,9 @@ Importante mencionar que es necesario tener una versión actualizada de node par
 nvm install node
 ```
 
-Se usó para éste caso la versión `v22.3.0`
-Se usa como fuente de datos la página `www.omdbapi.com`.
+Se usó para éste caso la versión `v22.3.0`.
+
+Se usa como fuente de datos la página `www.omdbapi.com`. Se permiten 1000 consultas diarias gratis.
 
 
 ## 🚀 Flujo del proyecto
@@ -20,4 +23,4 @@ El SSR se encuentra principalmente en la carga inicial de peliculas, donde se ob
 
 Hay que hacer login para escribir una reseña y valoración.
 
-Nos hubiese gustado que la página "Selected Movies" funcionara en su totalidad como una SSR, pero al intentar hacerlo en astro con react, se cai al iterar sobre las peliculas, por lo que se decidió dejarlo como una componente react con hidratación.
+Nos hubiese gustado que la página "Selected Movies" funcionara en su totalidad como una SSR, pero al intentar hacerlo en astro con react, se caía al iterar sobre las peliculas, por lo que se decidió dejarlo como una componente react con hidratación.
